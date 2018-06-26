@@ -1,0 +1,28 @@
+{
+  "name": "minify-fast",
+  "version": "0.0.2",
+  "description": "Minify a js file very fast",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/escodegen": "0.0.6",
+    "@types/esprima": "^4.0.2",
+    "@types/glob": "^5.0.35",
+    "@types/minimist": "^1.2.0",
+    "@types/shelljs": "^0.8.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "escodegen": "^1.10.0",
+    "esprima": "^4.0.0",
+    "glob": "^7.1.2",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.2"
+  }
+}
