@@ -73,7 +73,7 @@ function format(config: Config, action: (config: Config, ...args: any[])=>string
         console.log(`Writing ${outputFile}`);
       }
       if(result){
-        writeFileSync(result, outputFile)
+        writeFileSync(outputFile, result)
       }
     } catch (ex) {
       console.log(`Error formatting ${file}`);

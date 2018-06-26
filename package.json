@@ -1,16 +1,17 @@
 {
   "name": "minify-fast",
-  "version": "0.0.2",
-  "description": "Minify a js file very fast",
+  "version": "0.9.0",
+  "description": "Minify a js file very fast by just removing spaces",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "bin": "bin/minify-fast.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["JavaScript", "minify", "optimization"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/escodegen": "0.0.6",
     "@types/esprima": "^4.0.2",

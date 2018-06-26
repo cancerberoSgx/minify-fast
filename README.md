@@ -5,19 +5,9 @@
 
 ```sh
 npm install -g minify-fast
-minify-fast --input 
+minify-fast --input src/**/*.js # will modify files in src !
+minify-fast --input src/**/*.js --output out
 ```
-
-```js
-var minifyFast = require('minifyFast')
-const code = `
-let a     = [1, 2, 3]
-const b = a.map (n => n * 2)
-console.log(a, b) 
-`
-console.log(minifyFast(code))
-```
-
 
 ## node.js API
 
@@ -26,13 +16,13 @@ npm install --save-dev minify-fast
 ```
 
 ```js
-var minifyFast = require('minifyFast')
-// import minifyFast from 'minifyFast' // or using ES modules
+var minify = require('minifyFast')
+// import minify from 'minifyFast' // or using ES modules
 
 const code = `
 let a     = [1, 2, 3]
 const b = a.map (n => n * 2)
 console.log(a, b) 
 `
-console.log(minifyFast(code))
+console.log(minify(code))
 ```
