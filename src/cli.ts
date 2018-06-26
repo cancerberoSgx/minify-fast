@@ -6,7 +6,6 @@ import { mkdir } from 'shelljs';
 import { writeFileSync, readFileSync } from 'fs';
 import { minify } from '.';
 const args = minimist(process.argv.slice(2));
-console.log(args);
 
 export interface Config {
   input: string|string[]
