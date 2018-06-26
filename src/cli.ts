@@ -4,11 +4,11 @@ import glob from 'glob'
 import { join, dirname } from 'path';
 import { mkdir } from 'shelljs';
 import { writeFileSync, readFileSync } from 'fs';
-import { minify } from '.';
+import minify from '.';
 const args = minimist(process.argv.slice(2));
 
 export interface Config {
-  input: string|string[]
+  input: string | string[]
   output?: string
   debug?: boolean
 }
@@ -16,11 +16,11 @@ export interface Config {
 
 export function main() {
   const config: Config = args as any
-  if(!config.input){
+  if (!config.input) {
     help()
     return process.exit(1)
   }
-  format(config, (config: Config, file: string)=>{
+  format(config, (config: Config, file: string) => {
     const content = readFileSync(file).toString()
     return minify(content)
   })
@@ -37,7 +37,7 @@ To minify all files in src call (warning, src files will be modified!):
 
 
 
-function format(config: Config, action: (config: Config, ...args: any[])=>string) {
+function format(config: Config, action: (config: Config, ...args: any[]) => string) {
   if (config.debug) {
     console.log(config);
   }
@@ -59,9 +59,6 @@ function format(config: Config, action: (config: Config, ...args: any[])=>string
   files.forEach((file) => {
     try {
       const result = action(config, file)
-      // config.source = shell.cat(file).toString();
-      // const result = formatString(config);
-      // formatResults.push({ result, file });
       let outputFile;
       if (config.output) {
         outputFile = join(config.output, file.substring(inputFilesPrefix.length, file.length));
@@ -72,7 +69,7 @@ function format(config: Config, action: (config: Config, ...args: any[])=>string
       if (config.debug) {
         console.log(`Writing ${outputFile}`);
       }
-      if(result){
+      if (result) {
         writeFileSync(outputFile, result)
       }
     } catch (ex) {
