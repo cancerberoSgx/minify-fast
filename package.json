@@ -4,7 +4,7 @@
   "description": "Minify a js file very fast",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
-  "bin": "cli/minify-fast.js",
+  "bin": "bin/minify-fast.js",
   "scripts": {
     "build": "tsc"
   },
