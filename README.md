@@ -43,6 +43,7 @@ By default it will use [acorn](https://github.com/acornjs/acorn/) parser and [as
 
 # TODO
  * error handling
+ * generator astring not minifying
  * input CLI verification for --parser, --generator, etc and fail OK
  * benchmarks to compare parsers and generators and against real minifiers like google-closure-compiler / uglify
  * sourcemaps ? test if / how affects performance
