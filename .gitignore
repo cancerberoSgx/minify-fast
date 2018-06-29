@@ -6,3 +6,4 @@ tmp
 *.tgz
 .idea
 /static
+*.tgz

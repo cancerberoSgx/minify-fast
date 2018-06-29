@@ -4,26 +4,41 @@ import glob from 'glob'
 import { join, dirname } from 'path';
 import { mkdir } from 'shelljs';
 import { writeFileSync, readFileSync } from 'fs';
-import minify from '.';
+import minify, { MinifierConfig } from '.';
 const args = minimist(process.argv.slice(2));
 
-export interface Config {
+export interface CliConfig {
   input: string | string[]
   output?: string
   debug?: boolean
+  /** which parser to use. Default is esprima */
+  parser?: 'esprima'|'acorn',
+  /** which code generator to use. Default is escodegen */
+  generator?: 'escodegen'|'astring'
+  /** Indicate the mode the code should be parsed in. Can be either "script" or "module". This influences global strict mode and parsing of import and export declarations. Default 'script'*/
+  acornSourceType: 'script'|'module'
 }
 
 
 export function main() {
-  const config: Config = args as any
+  const config: CliConfig = args as any
   if (!config.input) {
     help()
     return process.exit(1)
   }
-  format(config, (config: Config, file: string) => {
-    const content = readFileSync(file).toString()
-    return minify(content)
-  })
+  config.parser = config.parser || 'esprima'
+  config.generator = config.generator || 'escodegen'
+  config.input = typeof config.input === 'string' ? [config.input] : config.input
+  config.input.forEach(input=>
+    format(Object.assign({}, config, {input}), (config: CliConfig, file: string) => {
+      const code = readFileSync(file).toString()
+      const minifierConfig : MinifierConfig = Object.assign({}, config, {code})
+      minifierConfig.acornOptions = {
+        sourceType: config.acornSourceType || 'script'
+      }
+      return minify(minifierConfig)
+    })
+  )
 }
 
 function help() {
@@ -32,12 +47,14 @@ To output src files minified in 'out' call:
   minify-fast --input src/**/*.js --output out
 To minify all files in src call (warning, src files will be modified!):  
   minify-fast --input src/**/*.js
+minify two input globs but this time using acorn parser and dump some debug information: 
+  minify-fast --input dist/**/*.js --input dist-umd*/**/*.js --parser acorn --debug
   `)
 }
 
 
 
-function format(config: Config, action: (config: Config, ...args: any[]) => string) {
+function format(config: CliConfig, action: (config: CliConfig, ...args: any[]) => string) {
   if (config.debug) {
     console.log(config);
   }
