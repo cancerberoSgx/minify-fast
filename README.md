@@ -27,15 +27,17 @@ npm install --save-dev minify-fast
 ```
 
 ```js
-var minify = require('minifyFast')
-// import minify from 'minifyFast' // if using ES modules / TypeScript
+var minify = require('minify-fast')
+// Or if using ES modules / TypeScript
+// import minify from 'minify-fast'
 
 const code = `
-let a     = [1, 2, 3]
-const b = a.map (n => n * 2)
-console.log(a, b) 
+  let a     = [1  , 2,    3];
+  const b = a.map (n => n * 2) /*hello */
+  console.log(a, b) 
 `
 console.log(minify({code}))
+// let a=[1,2,3];const b=a.map(n=>n*2);console.log(a,b)
 ```
 
 By default it will use [acorn](https://github.com/acornjs/acorn/) parser and [astring](https://github.com/davidbonnet/astring) code generator but it can be configured to use [esprima] parser and [escodegen](https://github.com/estools/estraverse) code generator. 
@@ -44,6 +46,8 @@ By default it will use [acorn](https://github.com/acornjs/acorn/) parser and [as
 # TODO
  * error handling
  * generator astring not minifying
+ * support typescript : https://github.com/eslint/typescript-eslint-parser ? mmm we still need a generator right ?
+ * another parser : https://github.com/eslint/espree
  * input CLI verification for --parser, --generator, etc and fail OK
  * benchmarks to compare parsers and generators and against real minifiers like google-closure-compiler / uglify
  * sourcemaps ? test if / how affects performance
