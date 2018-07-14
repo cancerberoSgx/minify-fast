@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",   
+    "target": "es2018",   
     "module": "commonjs", 
     "moduleResolution": "node",
-    "lib": ["es6", "dom"],
+    "lib": ["es2018"],
     "outDir": "./dist", 
     "rootDir": ".",
     "strict": false,
@@ -11,5 +11,5 @@
     "esModuleInterop": true,
     "declaration": true
   }, 
-  "exclude": ["test","dist"]
+  "include": ["./src/**/*.ts"]
 }

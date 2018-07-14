@@ -1,12 +1,12 @@
 {
   "name": "minify-fast",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Minify a js file very fast by just removing spaces",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "bin": "bin/minify-fast.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "prepare": "npm run build",
     "test": "npx ts-node node_modules/jasmine/bin/jasmine"
   },
